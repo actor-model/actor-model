@@ -21,5 +21,39 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/tsc:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "outputPath": "libs/core/dist",
+          "tsConfig": "libs/core/tsconfig.lib.json",
+          "declaration": true,
+          "sourceMap": true,
+          "inlineSources": true
+        },
+        "configurations": {
+          "development": {
+            "sourceMap": true,
+            "inlineSources": true
+          },
+          "production": {
+            "sourceMap": false,
+            "inlineSources": false
+          }
+        }
+      },
+      "link": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npm link"
+        }
+      }
+    }
+  }
 }
