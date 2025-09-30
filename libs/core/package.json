@@ -25,27 +25,13 @@
   "nx": {
     "targets": {
       "build": {
-        "executor": "@nx/tsc:tsc",
+        "executor": "nx:run-commands",
         "outputs": [
-          "{options.outputPath}"
+          "{projectRoot}/dist"
         ],
-        "defaultConfiguration": "production",
         "options": {
-          "outputPath": "libs/core/dist",
-          "tsConfig": "libs/core/tsconfig.lib.json",
-          "declaration": true,
-          "sourceMap": true,
-          "inlineSources": true
-        },
-        "configurations": {
-          "development": {
-            "sourceMap": true,
-            "inlineSources": true
-          },
-          "production": {
-            "sourceMap": false,
-            "inlineSources": false
-          }
+          "command": "tsc -p libs/core/tsconfig.lib.json",
+          "cwd": "."
         }
       },
       "link": {
