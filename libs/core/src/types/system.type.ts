@@ -1,5 +1,6 @@
-type Message = any;
-type Behavior = (message: Message) => void | Promise<void>;
+interface Message {
+  type: string;
+  payload?: any;
+}
 
-
-export type { Message, Behavior };
+export type { Message };

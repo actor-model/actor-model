@@ -36,7 +36,9 @@
       },
       "link": {
         "executor": "nx:run-commands",
-        "dependsOn": ["build"],
+        "dependsOn": [
+          "build"
+        ],
         "options": {
           "command": "npm link"
         }
