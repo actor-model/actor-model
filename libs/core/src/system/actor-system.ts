@@ -45,7 +45,9 @@ class ActorSystem {
   printHierarchy(): void {
     const rootActors = this.getRootActors();
     console.log('Actor Hierarchy:');
-    rootActors.forEach((actor) => this.printActorTree(actor, 0));
+    for (const actor of rootActors) {
+      this.printActorTree(actor, 0);
+    }
   }
 
   private printActorTree(actor: Actor, indent: number): void {
@@ -53,9 +55,10 @@ class ActorSystem {
     console.log(
       `${prefix}- ${actor.getName()} (${actor.getFullPath()}) [${actor.getState()}]`
     );
-    actor
-      .getChildren()
-      .forEach((child) => this.printActorTree(child, indent + 1));
+
+    for (const child of actor.getChildren()) {
+      this.printActorTree(child, indent + 1);
+    }
   }
 
   stopAllActors(): void {

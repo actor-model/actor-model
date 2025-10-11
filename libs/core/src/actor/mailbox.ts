@@ -3,11 +3,11 @@ import { Message, MailboxOptions } from '@actor-model/core';
 class Mailbox {
   private messageQueue: Message[] = [];
   private isProcessing = false;
-  private maxSize: number;
-  private processingDelay: number;
+  private readonly maxSize: number;
+  private readonly processingDelay: number;
 
   constructor(
-    private messageHandler: (message: Message) => void,
+    private readonly messageHandler: (message: Message) => void,
     options: MailboxOptions = {}
   ) {
     this.maxSize = options.maxSize ?? 1000;

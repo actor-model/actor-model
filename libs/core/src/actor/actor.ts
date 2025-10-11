@@ -3,6 +3,7 @@ import {
   Mailbox,
   ActorState,
   Message,
+  ActorSystem,
 } from '@actor-model/core';
 import { getMessageHandlers } from '../decorators';
 import { EventEmitter } from 'node:events';
@@ -10,7 +11,7 @@ import { EventEmitter } from 'node:events';
 export class Actor extends EventEmitter {
   protected children = new Map<string, Actor>();
   protected parent?: Actor;
-  protected system?: any;
+  protected system?: ActorSystem;
   protected state: ActorState = ActorState.CREATED;
   protected mailbox: Mailbox;
 
@@ -192,7 +193,7 @@ export class Actor extends EventEmitter {
     return this.parent;
   }
 
-  setSystem(system: any): void {
+  setSystem(system: ActorSystem): void {
     this.system = system;
     for (const child of this.children.values()) {
       child.setSystem(system);
